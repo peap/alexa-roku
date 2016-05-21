@@ -1,0 +1,40 @@
+Application ID
+==============
+mzn1.echo-sdk-ams.app.8bfb7bcc-dbd3-48a6-b934-29d6529e93e8
+
+Name
+====
+My Roku
+
+Invocation Name
+===============
+the Roku
+
+Version
+=======
+0.1.0
+
+Short Skill Description (160 characters max)
+============================================
+Along with a companion computer on your local network, control your Roku device
+by voice. Ask the Roku to launch channels, press buttons, and play or pause.
+
+Full Skill Description
+======================
+Along with a companion computer on your local network, control your Roku device
+by voice. Ask the Roku to launch channels, press buttons, and play or pause.
+
+
+Example Phrases
+===============
+Alexa, tell the Roku to launch Netflix.
+Alexa, tell the Roku to pause.
+Alexa, tell the Roku to go back.
+
+Category
+========
+Home-Automation
+
+Keywords
+========
+roku

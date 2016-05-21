@@ -1,0 +1,25 @@
+{
+  "intents": [
+    {
+      "intent": "LaunchChannelIntent",
+      "slots": [
+        {
+          "name": "Channel",
+          "type": "LIST_OF_ROKU_CHANNELS"
+        }
+      ]
+    },
+    {"intent": "PauseIntent"},
+    {"intent": "PlayIntent"},
+    {
+      "intent": "PressButtonIntent",
+      "slots": [
+        {
+          "name": "Button",
+          "type": "LIST_OF_ROKU_BUTTONS"
+        }
+      ]
+    },
+    {"intent": "AMAZON.HelpIntent"}
+  ]
+}

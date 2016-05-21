@@ -1,0 +1,9 @@
+back
+down
+home
+left
+okay
+pause
+play
+right
+up

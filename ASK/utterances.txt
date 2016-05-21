@@ -1,0 +1,20 @@
+LaunchChannelIntent go to {Channel}
+LaunchChannelIntent go to the {Channel} channel
+LaunchChannelIntent launch {Channel}
+LaunchChannelIntent launch the {Channel} channel
+LaunchChannelIntent open {Channel}
+LaunchChannelIntent open the {Channel} channel
+LaunchChannelIntent open up {Channel}
+LaunchChannelIntent open up the {Channel} channel
+LaunchChannelIntent start {Channel}
+LaunchChannelIntent start the {Channel} channel
+LaunchChannelIntent switch to {Channel}
+LaunchChannelIntent switch to the {Channel} channel
+
+PauseIntent pause
+
+PlayIntent play
+
+PressButtonIntent click {Button}
+PressButtonIntent go {Button}
+PressButtonIntent press {Button}
