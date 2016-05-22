@@ -128,10 +128,14 @@ def press_ok(alexa_request):
 @intent_handler('PressButtonIntent')
 def press_button(alexa_request):
     button = alexa_request.slots['Button'].get('value')
-    number = alexa_request.slots['NumberOfTimes'].get('value', 1)
-    logger.info('Pressing {0}...'.format(button))
+    number = alexa_request.slots['NumberOfTimes'].get('value', '1')
     try:
-        for _ in range(number):
+        n_times = int(number):
+    except ValueError:
+        logger.warn('Got bad number, "{0}".'.format(number))
+    logger.info('Pressing {0}, {1} times...'.format(button, n_times))
+    try:
+        for _ in range(n_times):
             g.roku.press_button(button)
             time.sleep(0.100)
     except RokuError as e:
