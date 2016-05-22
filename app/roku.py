@@ -159,12 +159,13 @@ class RokuDevice:
         url = ENDPOINTS['key-press'].format(key=KEYS['select'])
         self.post(url, {})
 
-    def press_button(self, button):
+    def press_button(self, requested_button):
+        button = requested_button.lower()
         if button in KEYS:
             url = ENDPOINTS['key-press'].format(key=KEYS[button])
             self.post(url, {})
         else:
-            raise RokuError('Unknown button, "{0}".'.format(button))
+            raise RokuError('Unknown button, "{0}".'.format(requested_button))
 
     def post(self, url, data, params=None):
         if params:
