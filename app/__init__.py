@@ -10,20 +10,21 @@ logger = logging.getLogger('alexa-roku')
 app = Flask('alexa-roku')
 app.config.from_object(settings)
 
+# Get the Roku on this network. Assumes only 1 exists, for now.
+logger.info('Looking for a Roku device.')
+for _ in range(5):
+    roku = find_roku_on_local_network()
+    if roku is not None:
+        break
+else:
+    raise RokuError('Could not find a Roku on the local network!')
+logger.info('Found a Roku device: {0}'.format(roku))
+app.roku = roku
 
-@app.before_first_request
-def get_local_roku_device():
-    """Get the Roku on this network. Assumes only 1 exists, for now."""
-    logger.info('Looking for a Roku device.')
-    roku = None
-    for _ in range(5):
-        roku = find_roku_on_local_network()
-        if roku is not None:
-            break
-    else:
-        raise RokuError('Could not find a Roku on the local network!')
-    logger.info('Found a Roku device: {0}'.format(roku))
-    g.roku = roku
+
+@app.before_request
+def attach_roku():
+    g.roku = app.roku
 
 
 @app.route('/', methods=['GET'])
