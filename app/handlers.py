@@ -130,14 +130,14 @@ def press_button(alexa_request):
     button = alexa_request.slots['Button'].get('value')
     number = alexa_request.slots['NumberOfTimes'].get('value', '1')
     try:
-        n_times = int(number):
+        n_times = int(number)
     except ValueError:
         logger.warn('Got bad number, "{0}".'.format(number))
     logger.info('Pressing {0}, {1} times...'.format(button, n_times))
     try:
         for _ in range(n_times):
             g.roku.press_button(button)
-            time.sleep(0.100)
+            time.sleep(0.1)
     except RokuError as e:
         logger.exception(e)
         return AlexaResponse('Sorry, something went wrong.')
