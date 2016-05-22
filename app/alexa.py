@@ -13,6 +13,8 @@ class AlexaRequest():
     def __init__(self, flask_request):
         self.flask_request = flask_request
         self.data = flask_request.json
+        if not self.data:
+            raise ValueError('no data received!')
         self.request_type = self.data['request']['type']
         self.session = self.data['session']
         self.timestamp = self.data['request']['timestamp']
