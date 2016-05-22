@@ -30,3 +30,4 @@ PlayIntent play
 PressButtonIntent click {Button}
 PressButtonIntent go {Button}
 PressButtonIntent press {Button}
+PressButtonIntent push {Button}

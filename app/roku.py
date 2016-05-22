@@ -27,6 +27,8 @@ KEYS = {
     'forward': 'Fwd',
     'play': 'Play',
     'select': 'Select',
+    'ok': 'Select',
+    'okay': 'Select',
     'left': 'Left',
     'right': 'Right',
     'down': 'Down',
@@ -60,7 +62,6 @@ class RokuDevice:
     A single Roku player accessible over the network.
     """
     _channels = None
-    _conn = None
     _device_info = None
     port = 8060
 
@@ -99,12 +100,6 @@ class RokuDevice:
         return self._channels
 
     @property
-    def connection(self):
-        if self._conn is None:
-            self._conn = HTTPConnection(self.ip_addr, self.port)
-        return self._conn
-
-    @property
     def device_info(self):
         if self._device_info is None:
             info = {}
@@ -125,8 +120,9 @@ class RokuDevice:
     def get(self, url, params=None):
         if params:
             url += '?{0}'.format(urlencode(params))
-        self.connection.request('GET', url)
-        resp = self.connection.getresponse()
+        conn = self.get_connection()
+        conn.request('GET', url)
+        resp = conn.getresponse()
         code = resp.status
         if not str(code).startswith('2'):
             raise RokuError('GET request to {0} failed: {1}'.format(url, code))
@@ -138,6 +134,9 @@ class RokuDevice:
             if channel.name.lower() == name.lower():
                 return channel
         return None
+
+    def get_connection(self):
+        return HTTPConnection(self.ip_addr, self.port)
 
     def launch_channel(self, name):
         channel = self.get_channel(name)
@@ -175,8 +174,9 @@ class RokuDevice:
             'Accept': 'text/plain',
             'Content-type': 'application/x-www-form-urlencoded',
         }
-        self.connection.request('POST', url, enc_data, headers)
-        resp = self.connection.getresponse()
+        conn = self.get_connection()
+        conn.request('POST', url, enc_data, headers)
+        resp = conn.getresponse()
         code = resp.status
         if not str(code).startswith('2'):
             raise RokuError('POST request to {0} failed: {1}'.format(url, code))

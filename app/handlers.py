@@ -125,6 +125,7 @@ def press_ok(alexa_request):
 @intent_handler('PressButtonIntent')
 def press_button(alexa_request):
     button = alexa_request.slots['Button'].get('value')
+    logger.info('Pressing {0}...'.format(button))
     try:
         g.roku.press_button(button)
     except RokuError as e:
