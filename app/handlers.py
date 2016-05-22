@@ -100,7 +100,7 @@ def help(alexa_request):
 @intent_handler('LaunchChannelIntent')
 def launch_channel(alexa_request):
     channel = alexa_request.slots['Channel'].get('value')
-    logger.info('Launching {0}...'.format(channel))
+    logger.info('Launching {0}.'.format(channel))
     if g.roku.get_channel(channel) is None:
         response = AlexaResponse(
             'I couldn\'t find a channel named {0}.'.format(channel)
@@ -133,13 +133,13 @@ def press_button(alexa_request):
         n_times = int(number)
     except ValueError:
         logger.warn('Got bad number, "{0}".'.format(number))
-    logger.info('Pressing {0}, {1} times...'.format(button, n_times))
+    logger.info('Pressing {0}, {1} times.'.format(button, n_times))
     try:
         for _ in range(n_times):
             g.roku.press_button(button)
             time.sleep(0.1)
     except RokuError as e:
         logger.exception(e)
-        return AlexaResponse('Sorry, something went wrong.')
+        return AlexaResponse('Sorry, trouble with the Roku.')
     else:
-        return AlexaResponse('Pressing {0}.'.format(button))
+        return AlexaResponse('Ok.'.format(button))
