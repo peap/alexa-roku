@@ -25,6 +25,15 @@
         }
       ]
     },
+    {
+      "intent": "PressButtonTwiceIntent",
+      "slots": [
+        {
+          "name": "Button",
+          "type": "LIST_OF_ROKU_BUTTONS"
+        }
+      ]
+    },
     {"intent": "SelectIntent"},
     {"intent": "AMAZON.HelpIntent"}
   ]

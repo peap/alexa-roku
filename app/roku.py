@@ -1,4 +1,5 @@
 import logging
+import time
 from http.client import HTTPConnection
 from urllib.parse import urlencode, urlparse
 from xml.etree import ElementTree
@@ -40,6 +41,8 @@ KEYS = {
     'search': 'Search',
     'enter': 'Enter',
 }
+
+REPEAT_DELAY_SECONDS = 0.1
 
 
 class RokuError(Exception):
@@ -159,11 +162,13 @@ class RokuDevice:
         url = ENDPOINTS['key-press'].format(key=KEYS['select'])
         self.post(url, {})
 
-    def press_button(self, requested_button):
+    def press_button(self, requested_button, n=1):
         button = requested_button.lower()
         if button in KEYS:
             url = ENDPOINTS['key-press'].format(key=KEYS[button])
-            self.post(url, {})
+            for _ in range(n):
+                self.post(url, {})
+                time.sleep(REPEAT_DELAY_SECONDS)
         else:
             raise RokuError('Unknown button, "{0}".'.format(requested_button))
 

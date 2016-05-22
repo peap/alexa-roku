@@ -1,5 +1,4 @@
 import logging
-import time
 from functools import wraps
 
 from flask import g
@@ -135,9 +134,20 @@ def press_button(alexa_request):
         logger.warn('Got bad number, "{0}".'.format(number))
     logger.info('Pressing {0}, {1} times.'.format(button, n_times))
     try:
-        for _ in range(n_times):
-            g.roku.press_button(button)
-            time.sleep(0.1)
+        g.roku.press_button(button, n=n_times)
+    except RokuError as e:
+        logger.exception(e)
+        return AlexaResponse('Sorry, trouble with the Roku.')
+    else:
+        return AlexaResponse('Ok.'.format(button))
+
+
+@intent_handler('PressButtonTwiceIntent')
+def press_button_twice(alexa_request):
+    button = alexa_request.slots['Button'].get('value')
+    logger.info('Pressing {0} twice.'.format(button))
+    try:
+        g.roku.press_button(button, n=2)
     except RokuError as e:
         logger.exception(e)
         return AlexaResponse('Sorry, trouble with the Roku.')

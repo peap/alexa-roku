@@ -13,19 +13,10 @@ LaunchChannelIntent switch to the {Channel} channel
 
 OkayIntent alright
 OkayIntent alright already
-OkayIntent alright already
 OkayIntent okay
-OkayIntent press okay
-OkayIntent push okay
-OkayIntent say okay
+OkayIntent yeah
+OkayIntent yep
 OkayIntent yes
-
-SelectIntent choose that
-SelectIntent choose this
-SelectIntent choose it
-SelectIntent select that
-SelectIntent select this
-SelectIntent select it
 
 PauseIntent pause
 
@@ -35,7 +26,20 @@ PressButtonIntent click {Button}
 PressButtonIntent go {Button}
 PressButtonIntent press {Button}
 PressButtonIntent push {Button}
+
 PressButtonIntent click {Button} {NumberOfTimes} times
 PressButtonIntent go {Button} {NumberOfTimes} times
 PressButtonIntent press {Button} {NumberOfTimes} times
 PressButtonIntent push {Button} {NumberOfTimes} times
+
+PressButtonTwiceIntent click {Button} twice
+PressButtonTwiceIntent go {Button} twice
+PressButtonTwiceIntent press {Button} twice
+PressButtonTwiceIntent push {Button} twice
+
+SelectIntent choose that
+SelectIntent choose this
+SelectIntent choose it
+SelectIntent select that
+SelectIntent select this
+SelectIntent select it
