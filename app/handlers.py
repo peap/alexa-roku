@@ -71,6 +71,7 @@ def intent_dispatcher(alexa_request, intent_name=None):
         intent_name = alexa_request.intent_name
     intent_handler = INTENT_HANDLERS.get(intent_name)
     if callable(intent_handler):
+        logger.info('Dispatching to {0}...'.format(intent_name))
         return intent_handler(alexa_request)
     else:
         logger.error('Unhandled intent: {0}'.format(intent_name))
@@ -98,6 +99,7 @@ def help(alexa_request):
 @intent_handler('LaunchChannelIntent')
 def launch_channel(alexa_request):
     channel = alexa_request.slots['Channel'].get('value')
+    logger.info('Launching {0}...'.format(channel))
     if g.roku.get_channel(channel) is None:
         response = AlexaResponse(
             'I couldn\'t find a channel named {0}.'.format(channel)
