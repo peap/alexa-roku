@@ -1,7 +1,9 @@
 import logging
 from http.client import HTTPConnection
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlparse
 from xml.etree import ElementTree
+
+from app import ssdp
 
 logger = logging.getLogger('alexa-roku')
 
@@ -72,7 +74,7 @@ class RokuDevice:
             raise RokuError('Connection refused to {0}!'.format(self))
 
     def __str__(self):
-        return '{0}:{1}'.format(self.ip_addr, self.port)
+        return '{0} ({1}:{2})'.format(self.name, self.ip_addr, self.port)
 
     @property
     def channels(self):
@@ -158,6 +160,13 @@ class RokuDevice:
         url = ENDPOINTS['key-press'].format(key=KEYS['select'])
         self.post(url, {})
 
+    def press_button(self, button):
+        if button in KEYS:
+            url = ENDPOINTS['key-press'].format(key=KEYS[button])
+            self.post(url, {})
+        else:
+            raise RokuError('Unknown button, "{0}".'.format(button))
+
     def post(self, url, data, params=None):
         if params:
             url += '?{0}'.format(urlencode(params))
@@ -173,3 +182,14 @@ class RokuDevice:
             raise RokuError('POST request to {0} failed: {1}'.format(url, code))
         data = resp.read()
         return data
+
+
+def find_roku_on_local_network():
+    """Get the first RokuDevice discovered on the local network."""
+    st_header = 'roku:ecp'
+    for device in ssdp.discover(st_header):
+        # non-Roku devices might respond
+        if device.st == st_header:
+            parsed = urlparse(device.location)
+            return RokuDevice(parsed.hostname, parsed.port)
+    return None

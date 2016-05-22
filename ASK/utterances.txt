@@ -11,6 +11,18 @@ LaunchChannelIntent start the {Channel} channel
 LaunchChannelIntent switch to {Channel}
 LaunchChannelIntent switch to the {Channel} channel
 
+OkayIntent okay
+OkayIntent press okay
+OkayIntent say okay
+OkayIntent yes
+
+SelectIntent choose that
+SelectIntent choose this
+SelectIntent choose it
+SelectIntent select that
+SelectIntent select this
+SelectIntent select it
+
 PauseIntent pause
 
 PlayIntent play

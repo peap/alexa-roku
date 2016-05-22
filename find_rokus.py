@@ -29,8 +29,7 @@ def main():
         for device in rokus:
             parsed = urlparse(device.location)
             roku = RokuDevice(parsed.hostname, parsed.port)
-            n_apps = len(roku.channels)
-            sys.stdout.write('    * {0} ({0.name})\n'.format(roku))
+            sys.stdout.write('    * {0}\n'.format(roku))
 
     if others:
         sys.stdout.write('--> Others:\n')
