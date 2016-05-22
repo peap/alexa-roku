@@ -18,6 +18,10 @@
         {
           "name": "Button",
           "type": "LIST_OF_ROKU_BUTTONS"
+        },
+        {
+          "name": "NumberOfTimes",
+          "type": "AMAZON.NUMBER"
         }
       ]
     },
