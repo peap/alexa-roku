@@ -155,6 +155,7 @@ def press_button_twice(alexa_request):
     else:
         return AlexaResponse('Ok.')
 
+
 @intent_handler('RokuSearchIntent')
 def roku_search(alexa_request):
     logger.info('Launching Roku Search')
@@ -169,6 +170,7 @@ def roku_search(alexa_request):
         return AlexaResponse('Sorry, trouble with the Roku.')
     else:
         return AlexaResponse('Ok.')
+
 
 @intent_handler('LiteralIntent')
 def literal(alexa_request):
