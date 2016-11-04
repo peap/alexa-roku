@@ -20,6 +20,7 @@ ENDPOINTS = {
     'key-press': '/keypress/{key}',
     'launch': '/launch/{channel_id}',
     'list-channels': '/query/apps',
+    'literal': '/keypress/Lit_%{code:x}'
 }
 
 KEYS = {
@@ -27,6 +28,8 @@ KEYS = {
     'reverse': 'Rev',
     'forward': 'Fwd',
     'play': 'Play',
+    'stop': 'Play',
+    'pause': 'Play',
     'select': 'Select',
     'ok': 'Select',
     'okay': 'Select',
@@ -145,6 +148,11 @@ class RokuDevice:
         channel = self.get_channel(name)
         url = ENDPOINTS['launch'].format(channel_id=channel.id)
         self.post(url, {})
+
+    def literal(self, text):
+        for character in text:
+            url = ENDPOINTS['literal'].format(code=ord(character))
+            self.post(url, {})
 
     @property
     def model(self):
