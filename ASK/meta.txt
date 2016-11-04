@@ -1,7 +1,3 @@
-Application ID
-==============
-mzn1.echo-sdk-ams.app.8bfb7bcc-dbd3-48a6-b934-29d6529e93e8
-
 Name
 ====
 My Roku
@@ -12,7 +8,7 @@ the Roku
 
 Version
 =======
-0.1.0
+0.2.0
 
 Short Skill Description (160 characters max)
 ============================================

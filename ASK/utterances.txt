@@ -44,11 +44,17 @@ SelectIntent select that
 SelectIntent select this
 SelectIntent select it
 
+RokuSearchIntent go to search
 RokuSearchIntent go to roku search
+RokuSearchIntent launch search
 RokuSearchIntent launch roku search
+RokuSearchIntent open search
 RokuSearchIntent open roku search
+RokuSearchIntent open up search
 RokuSearchIntent open up roku search
+RokuSearchIntent start search
 RokuSearchIntent start roku search
+RokuSearchIntent switch search
 RokuSearchIntent switch to roku search
 
 LiteralIntent type {WordA}
