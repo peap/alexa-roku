@@ -34,7 +34,7 @@ def homepage():
     return render_template('home.html')
 
 
-@app.route('/alexa/', methods=['POST'])
+@app.route('/alexa', methods=['POST'], strict_slashes=False)
 def incoming_alexa_request():
     from app.alexa import AlexaRequest
     from app.handlers import dispatch

@@ -1,5 +1,5 @@
 import logging
-import time
+import string
 from functools import wraps
 
 from flask import g
@@ -53,6 +53,11 @@ def dispatch(alexa_request):
         logger.error('Unhandled request type: {0}'.format(request_type))
         return AlexaResponse('Sorry, that feature isn\'t ready yet.')
 
+# Utilities
+
+def get_text(request, count = 5):
+    return ' '.join(filter(None, [request.slots['Word' + item].get('value', '')
+                                  for item in string.ascii_uppercase[:count]]))
 
 # Request-type handlers
 
@@ -158,13 +163,10 @@ def press_button_twice(alexa_request):
 
 @intent_handler('RokuSearchIntent')
 def roku_search(alexa_request):
-    logger.info('Launching Roku Search')
+    text = get_text(alexa_request)
+    logger.info('Launching Roku Search with keyword \'{0}\''.format(text))
     try:
-        g.roku.press_button('home')
-        time.sleep(1)
-        g.roku.press_button('home')
-        g.roku.press_button('down', n=5)
-        g.roku.press_button('select')
+        g.roku.search(text)
     except RokuError as e:
         logger.exception(e)
         return AlexaResponse('Sorry, trouble with the Roku.')
@@ -174,9 +176,7 @@ def roku_search(alexa_request):
 
 @intent_handler('LiteralIntent')
 def literal(alexa_request):
-    words = [alexa_request.slots['Word' + item].get('value', '')
-             for item in 'ABCDE']
-    text = ' '.join(filter(None, words))
+    text = get_text(alexa_request)
     logger.info('Typing \'{0}\''.format(text))
     try:
         g.roku.literal(text + ' ')

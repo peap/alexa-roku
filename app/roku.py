@@ -20,7 +20,8 @@ ENDPOINTS = {
     'key-press': '/keypress/{key}',
     'launch': '/launch/{channel_id}',
     'list-channels': '/query/apps',
-    'literal': '/keypress/Lit_%{code:x}'
+    'literal': '/keypress/Lit_%{code:x}',
+    'search': '/search/browse'
 }
 
 KEYS = {
@@ -197,6 +198,8 @@ class RokuDevice:
         data = resp.read()
         return data
 
+    def search(self, keyword = ''):
+        self.post(ENDPOINTS['search'], {}, {'keyword': keyword})
 
 def find_roku_on_local_network():
     """Get the first RokuDevice discovered on the local network."""

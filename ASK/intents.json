@@ -35,7 +35,31 @@
       ]
     },
     {"intent": "SelectIntent"},
-    {"intent": "RokuSearchIntent"},
+    {
+      "intent": "RokuSearchIntent",
+      "slots": [
+        {
+          "name": "WordA",
+          "type": "LITERAL_TEXT"
+        },
+        {
+          "name": "WordB",
+          "type": "LITERAL_TEXT"
+        },
+        {
+          "name": "WordC",
+          "type": "LITERAL_TEXT"
+        },
+        {
+          "name": "WordD",
+          "type": "LITERAL_TEXT"
+        },
+        {
+          "name": "WordE",
+          "type": "LITERAL_TEXT"
+        }
+      ]
+    },
     {
       "intent": "LiteralIntent",
       "slots": [
