@@ -139,7 +139,7 @@ def press_button(alexa_request):
         logger.exception(e)
         return AlexaResponse('Sorry, trouble with the Roku.')
     else:
-        return AlexaResponse('Ok.'.format(button))
+        return AlexaResponse('Ok.')
 
 
 @intent_handler('PressButtonTwiceIntent')
@@ -152,4 +152,31 @@ def press_button_twice(alexa_request):
         logger.exception(e)
         return AlexaResponse('Sorry, trouble with the Roku.')
     else:
-        return AlexaResponse('Ok.'.format(button))
+        return AlexaResponse('Ok.')
+
+@intent_handler('RokuSearchIntent')
+def roku_search(alexa_request):
+    logger.info('Launching Roku Search')
+    try:
+        g.roku.press_button('home')
+        g.roku.press_button('down', n=5)
+        g.roku.press_button('select')
+    except RokuError as e:
+        logger.exception(e)
+        return AlexaResponse('Sorry, trouble with the Roku.')
+    else:
+        return AlexaResponse('Ok.')
+
+@intent_handler('LiteralIntent')
+def literal(alexa_request):
+    words = [alexa_request.slots['Word' + item].get('value', '')
+             for item in 'ABCDE']
+    text = ' '.join(filter(None, words))
+    logger.info('Typing \'{0}\''.format(text))
+    try:
+        g.roku.literal(text + ' ')
+    except RokuError as e:
+        logger.exception(e)
+        return AlexaResponse('Sorry, trouble with the Roku.')
+    else:
+        return AlexaResponse('Ok.')

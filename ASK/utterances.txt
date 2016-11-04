@@ -43,3 +43,21 @@ SelectIntent choose it
 SelectIntent select that
 SelectIntent select this
 SelectIntent select it
+
+RokuSearchIntent go to roku search
+RokuSearchIntent launch roku search
+RokuSearchIntent open roku search
+RokuSearchIntent open up roku search
+RokuSearchIntent start roku search
+RokuSearchIntent switch to roku search
+
+LiteralIntent type {WordA}
+LiteralIntent type {WordA} {WordB}
+LiteralIntent type {WordA} {WordB} {WordC}
+LiteralIntent type {WordA} {WordB} {WordC} {WordD}
+LiteralIntent type {WordA} {WordB} {WordC} {WordD} {WordE}
+LiteralIntent enter {WordA}
+LiteralIntent enter {WordA} {WordB}
+LiteralIntent enter {WordA} {WordB} {WordC}
+LiteralIntent enter {WordA} {WordB} {WordC} {WordD}
+LiteralIntent enter {WordA} {WordB} {WordC} {WordD} {WordE}
