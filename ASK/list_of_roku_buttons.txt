@@ -1,9 +1,19 @@
-back
-down
 home
-left
-okay
-pause
+reverse
+forward
 play
+stop
+pause
+select
+ok
+okay
+left
 right
+down
 up
+back
+instant replay
+info
+backspace
+search
+enter

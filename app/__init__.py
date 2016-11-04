@@ -3,23 +3,25 @@ import logging
 from flask import Flask, abort, g, jsonify, render_template, request
 
 from app import settings
-from app.roku import RokuError, find_roku_on_local_network
+from app.roku import RokuDevice, RokuError, find_roku_on_local_network
 
 logger = logging.getLogger('alexa-roku')
 
 app = Flask('alexa-roku')
 app.config.from_object(settings)
 
-# Get the Roku on this network. Assumes only 1 exists, for now.
-logger.info('Looking for a Roku device.')
-for _ in range(5):
-    roku = find_roku_on_local_network()
-    if roku is not None:
-        break
+if settings.ROKU_ADDRESS:
+    app.roku = RokuDevice(settings.ROKU_ADDRESS)
 else:
-    raise RokuError('Could not find a Roku on the local network!')
-logger.info('Found a Roku device: {0}'.format(roku))
-app.roku = roku
+    # Get the Roku on this network. Assumes only 1 exists, for now.
+    logger.info('Looking for a Roku device.')
+    for _ in range(5):
+        app.roku = find_roku_on_local_network()
+        if app.roku is not None:
+            break
+    else:
+        raise RokuError('Could not find a Roku on the local network!')
+logger.info('Found a Roku device: {0}'.format(app.roku))
 
 
 @app.before_request
