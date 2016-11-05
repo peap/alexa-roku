@@ -54,9 +54,14 @@ RokuSearchIntent open up search
 RokuSearchIntent open up roku search
 RokuSearchIntent start search
 RokuSearchIntent start roku search
-RokuSearchIntent switch search
+RokuSearchIntent switch to search
 RokuSearchIntent switch to roku search
 
+RokuSearchIntent look for {WordA}
+RokuSearchIntent look for {WordA} {WordB}
+RokuSearchIntent look for {WordA} {WordB} {WordC}
+RokuSearchIntent look for {WordA} {WordB} {WordC} {WordD}
+RokuSearchIntent look for {WordA} {WordB} {WordC} {WordD} {WordE}
 RokuSearchIntent search for {WordA}
 RokuSearchIntent search for {WordA} {WordB}
 RokuSearchIntent search for {WordA} {WordB} {WordC}
@@ -68,6 +73,11 @@ RokuSearchIntent find {WordA} {WordB} {WordC}
 RokuSearchIntent find {WordA} {WordB} {WordC} {WordD}
 RokuSearchIntent find {WordA} {WordB} {WordC} {WordD} {WordE}
 
+LiteralIntent write {WordA}
+LiteralIntent write {WordA} {WordB}
+LiteralIntent write {WordA} {WordB} {WordC}
+LiteralIntent write {WordA} {WordB} {WordC} {WordD}
+LiteralIntent write {WordA} {WordB} {WordC} {WordD} {WordE}
 LiteralIntent type {WordA}
 LiteralIntent type {WordA} {WordB}
 LiteralIntent type {WordA} {WordB} {WordC}
