@@ -53,11 +53,13 @@ def dispatch(alexa_request):
         logger.error('Unhandled request type: {0}'.format(request_type))
         return AlexaResponse('Sorry, that feature isn\'t ready yet.')
 
+
 # Utilities
 
-def get_text(request, count = 5):
+def get_text(request, count=5):
     return ' '.join(filter(None, [request.slots['Word' + item].get('value', '')
                                   for item in string.ascii_uppercase[:count]]))
+
 
 # Request-type handlers
 

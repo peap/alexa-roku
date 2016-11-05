@@ -198,8 +198,9 @@ class RokuDevice:
         data = resp.read()
         return data
 
-    def search(self, keyword = ''):
+    def search(self, keyword=''):
         self.post(ENDPOINTS['search'], {}, {'keyword': keyword})
+
 
 def find_roku_on_local_network():
     """Get the first RokuDevice discovered on the local network."""
